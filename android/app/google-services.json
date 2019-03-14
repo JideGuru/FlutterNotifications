@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "274040546517",
+    "firebase_url": "https://notification-sample-7f230.firebaseio.com",
+    "project_id": "notification-sample-7f230",
+    "storage_bucket": "notification-sample-7f230.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274040546517:android:97a6cdaa947db9f1",
+        "android_client_info": {
+          "package_name": "com.jideguru.samplenotificationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274040546517-8ims63c2c80913o3tj6io39k5v5d781u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc5msECwjI-Z5OtBCAKYstZ86tfuf_X3s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
