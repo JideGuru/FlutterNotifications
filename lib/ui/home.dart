@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:dio/dio.dart';
 
 
 class Home extends StatefulWidget {
@@ -20,6 +23,7 @@ class _HomeState extends State<Home> {
 
   );
 
+
   @override
   void initState() {
     super.initState();
@@ -36,6 +40,11 @@ class _HomeState extends State<Home> {
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
         print('on message $message');
+
+//        Map json = jsonDecode(message.toString());
+//        print(json['notification'].toString());
+        _showNotif(context, "$message");
+//        print(json['notification']['body']);
       },
       onResume: (Map<String, dynamic> message) async {
         print('on resume $message');
@@ -54,6 +63,22 @@ class _HomeState extends State<Home> {
         .listen((IosNotificationSettings settings)
     {
       print("Settings registered: $settings");
+    });
+  }
+
+
+  void _sendNotif(){
+    setState(() async {
+      if(_messageControl.text.isEmpty){
+
+      }else{
+//        var DATA='{"notification": {"body": "this is a body","title": "this is a title"}, "priority": "high", "data": {"click_action": "FLUTTER_NOTIFICATION_CLICK", "id": "1", "status": "done"}, "to": "fEJLnLR2dc0:APA91bGI-YqNkQBfxmlqhzzCw0-8snQTza1i636RgKQecEY0_ymlm-wQD2mG-jk9c3Bpt6Jlw_HrrTR-O1PkZSRv369CtpFGv280H8OVWKk-ASVqfhc-LIYixmWiDOH9SwsI7VeaMNfk"}';
+//        curl https://fcm.googleapis.com/fcm/send -H "Content-Type:application/json" -X POST -d "$DATA" -H "Authorization: key=AAAAP84W5NU:APA91bEP8tukYVX0HgLPlrJVffBY5urEoKCbNUWeQAgFhAbpOAJ0FUT9GSC-vF7mjyV0b4RXGUv8AJGiq_oaiShNHKIc0HtnodJyxIgDP5fYGcllc4xsRGpjiKDMJzfRggeb_BUJwDKO"
+//        Response response;
+//        Dio dio = new Dio();
+//        response = await dio.post("https://fcm.googleapis.com/fcm/send", data: {"id": 12, "name": "wendu"});
+
+      }
     });
   }
 
@@ -133,7 +158,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   onPressed: (){
-                    print("pressed");
+                    _sendNotif();
                   },
                 ),
               ),
@@ -153,6 +178,23 @@ class _HomeState extends State<Home> {
     var alert = new AlertDialog(
       title: Text("Info"),
       content: Text("Made With Flutter by JideGuru"),
+
+      actions: <Widget>[
+
+        FlatButton(
+          onPressed: (){Navigator.pop(context);},
+          child: Text("OK"),
+        )
+      ],
+    );
+
+    showDialog(context: context, builder: (context)=> alert);
+  }
+
+  void _showNotif(BuildContext context, String body){
+    var alert = new AlertDialog(
+      title: Text("Notification"),
+      content: Text("$body"),
 
       actions: <Widget>[
 
